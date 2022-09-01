@@ -1,9 +1,19 @@
-const btn = document.querySelector('button');
+const addTodo = document.querySelector('#add-todo');
 const input = document.querySelector('input');
 const display = document.querySelector('#display');
 
+function project (name, todos) {
+    return {name, todos}
+}
+
+function Todo (title, description, dueDate, priority, checklist, notes) {
+    return {title}
+}
+
+
 function displayToDo() {
-    btn.addEventListener('click', () => {
+    addTodo.addEventListener('click', () => {
+        if(!!input.value) {
         display.innerHTML += `
         <div class="to-do-item">
             <button class="check-mark" style="padding: 5px"></button>
@@ -14,22 +24,32 @@ function displayToDo() {
         `
         resetInput();
         checkItem();
+            }
     })
 }
 function resetInput() {
     input.value = "";
 }
 
-displayToDo();
 function checkItem () {
     let checkMarks = document.querySelectorAll('.check-mark');
     checkMarks.forEach( mark => {
         mark.addEventListener('click', () => {
-            if (mark.style.backgroundColor === "rgb(146 146 255)") {
-                mark.style.backgroundColor = "white"
-            } else {
-                mark.style.backgroundColor = "rgb(146 146 255)";
-            }
+            mark.parentElement.classList.toggle('check');
         })
     })
 }
+
+function addProject() {
+    const defaultProject = document.querySelector('#default-project');
+    const addProjectBtn = document.querySelector('#add-project');
+    addProjectBtn.addEventListener('click', () => {
+        let newProject = document.createElement('button');
+        newProject.textContent = prompt('what is the name of the new project?');
+        newProject.id = newProject.textContent;
+        defaultProject.after(newProject);
+    })
+}
+
+displayToDo();
+addProject();

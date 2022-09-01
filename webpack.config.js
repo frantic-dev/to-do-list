@@ -7,6 +7,7 @@ module.exports = {
     index:'./src/index.js',
     todolist:'./src/todo-list.js'
   },
+  devtool: 'inline-source-map',
   plugins: [
     new HtmlWebpackPlugin()
   ],
