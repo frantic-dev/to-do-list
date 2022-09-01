@@ -1,32 +1,21 @@
-/*
- * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
 /******/ (() => { // webpackBootstrap
-/******/ 	var __webpack_modules__ = ({
-
-/***/ "./src/index.js":
+var __webpack_exports__ = {};
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/***/ (() => {
+const body = document.querySelector('body');
+function htmlBody() {
+    body.innerHTML = `
+        <button id="default-project" >DEFAULT PROJECT</button>
+        <button id="add-project">ADD A PROJECT +</button>
+        <br>
+        <input type="text"/>
+        <button id="add-todo">&#10004;</button>
+        <div id="display" class="project-default"></div>
 
-eval("const body = document.querySelector('body');\r\nfunction htmlBody() {\r\n    body.innerHTML = `\r\n        <input type=\"text\"/>\r\n        <button>&#10004;</button>\r\n        <div id=\"display\"></div>\r\n\r\n    `\r\n}\r\nhtmlBody();\n\n//# sourceURL=webpack://to-do-list/./src/index.js?");
-
-/***/ })
-
-/******/ 	});
-/************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/index.js"]();
-/******/ 	
+    `
+}
+htmlBody();
 /******/ })()
 ;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguYnVuZGxlLmpzIiwibWFwcGluZ3MiOiI7Ozs7O0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSxzQ0FBc0M7QUFDdEM7QUFDQTtBQUNBO0FBQ0E7QUFDQSxXIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vdG8tZG8tbGlzdC8uL3NyYy9pbmRleC5qcyJdLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBib2R5ID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcignYm9keScpO1xyXG5mdW5jdGlvbiBodG1sQm9keSgpIHtcclxuICAgIGJvZHkuaW5uZXJIVE1MID0gYFxyXG4gICAgICAgIDxidXR0b24gaWQ9XCJkZWZhdWx0LXByb2plY3RcIiA+REVGQVVMVCBQUk9KRUNUPC9idXR0b24+XHJcbiAgICAgICAgPGJ1dHRvbiBpZD1cImFkZC1wcm9qZWN0XCI+QUREIEEgUFJPSkVDVCArPC9idXR0b24+XHJcbiAgICAgICAgPGJyPlxyXG4gICAgICAgIDxpbnB1dCB0eXBlPVwidGV4dFwiLz5cclxuICAgICAgICA8YnV0dG9uIGlkPVwiYWRkLXRvZG9cIj4mIzEwMDA0OzwvYnV0dG9uPlxyXG4gICAgICAgIDxkaXYgaWQ9XCJkaXNwbGF5XCIgY2xhc3M9XCJwcm9qZWN0LWRlZmF1bHRcIj48L2Rpdj5cclxuXHJcbiAgICBgXHJcbn1cclxuaHRtbEJvZHkoKTsiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=
