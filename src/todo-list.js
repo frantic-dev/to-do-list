@@ -2,31 +2,39 @@ const addTodo = document.querySelector('#add-todo');
 const input = document.querySelector('input');
 const display = document.querySelector('#display');
 
-function project (name, todos) {
-    return {name, todos}
-}
+let defaultProject = [];
 
-function Todo (title, description, dueDate, priority, checklist, notes) {
+function todo(title) {
     return {title}
 }
 
+function storeTodoInProject(todoTitle) {
+    defaultProject[defaultProject.length] = todo(todoTitle);
+}
 
-function displayToDo() {
+function todoList() {
     addTodo.addEventListener('click', () => {
         if(!!input.value) {
+            storeTodoInProject(input.value);
+            displayTodo();
+            resetInput();
+            checkItem();
+            console.log(defaultProject)
+            }
+    })
+}
+function displayTodo() {
+    let newTask = defaultProject[defaultProject.length - 1]
         display.innerHTML += `
         <div class="to-do-item">
             <button class="check-mark" style="padding: 5px"></button>
             <div class="to-do" style="display:inline-block">
-                ${input.value}
+                ${newTask.title}
             </div>
         </div>
         `
-        resetInput();
-        checkItem();
-            }
-    })
 }
+
 function resetInput() {
     input.value = "";
 }
@@ -51,5 +59,5 @@ function addProject() {
     })
 }
 
-displayToDo();
+todoList();
 addProject();
