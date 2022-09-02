@@ -1,0 +1,25 @@
+@mixin redBorder {
+    border: 1px solid red;
+}
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+ }
+body {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+#all-projects {
+    // @include redBorder();
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+}
+
+#all-todos {
+    // @include redBorder();
+    width: 70vw;
+}
