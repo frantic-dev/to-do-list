@@ -61,7 +61,12 @@ function addProject() {
         newProject.textContent = prompt('what is the name of the new project?');
         newProject.id = newProject.textContent.split(' ').join('-');
         sectionProjects.appendChild(newProject);
+        createProjectStorage(newProject.id);
     })
+}
+function createProjectStorage(projectTitle) {
+    allProjects[projectTitle] = [];
+    console.log(allProjects);
 }
 
 todoList();
