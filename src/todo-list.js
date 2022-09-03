@@ -2,14 +2,13 @@ const addTodo = document.querySelector('#add-todo');
 const input = document.querySelector('input');
 const display = document.querySelector('#display');
 
-let defaultProject = [];
+let allProjects = {
+    ['default-project']: []
+};
+
 
 function todo(title) {
     return {title}
-}
-
-function storeTodoInProject(todoTitle) {
-    defaultProject[defaultProject.length] = todo(todoTitle);
 }
 
 function todoList() {
@@ -19,12 +18,18 @@ function todoList() {
             displayTodo();
             resetInput();
             checkItem();
-            console.log(defaultProject)
-            }
+            console.log(allProjects)
+        }
     })
 }
+function storeTodoInProject(todoTitle) {
+    let project = allProjects['default-project'];
+    project[project.length] = todo(todoTitle);
+    return allProjects;
+}
 function displayTodo() {
-    let newTask = defaultProject[defaultProject.length - 1]
+    let project = allProjects['default-project'];
+    let newTask = project[project.length - 1];
         display.innerHTML += `
         <div class="to-do-item">
             <button class="check-mark" style="padding: 5px"></button>
@@ -49,13 +54,13 @@ function checkItem () {
 }
 
 function addProject() {
-    const defaultProject = document.querySelector('#default-project');
+    const sectionProjects = document.querySelector('#all-projects');
     const addProjectBtn = document.querySelector('#add-project');
     addProjectBtn.addEventListener('click', () => {
         let newProject = document.createElement('button');
         newProject.textContent = prompt('what is the name of the new project?');
-        newProject.id = newProject.textContent;
-        defaultProject.after(newProject);
+        newProject.id = newProject.textContent.split(' ').join('-');
+        sectionProjects.appendChild(newProject);
     })
 }
 
