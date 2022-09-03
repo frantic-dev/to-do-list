@@ -32,6 +32,7 @@ function storeTodoInProject(todoTitle) {
 function displayTodo() {
     let project = allProjects[currentProject];
     let newTask = project[project.length - 1];
+    if (display.className === currentProject) {
         display.innerHTML += `
         <div class="to-do-item">
             <button class="check-mark" style="padding: 5px"></button>
@@ -40,6 +41,7 @@ function displayTodo() {
             </div>
         </div>
         `
+    }
 }
 
 function resetInput() {
@@ -75,9 +77,14 @@ function createProjectStorage(projectTitle) {
 }
 
 function switchProjects () {
-    let lastProject = document.querySelector('#all-projects').lastElementChild;
+    let allProjects = document.querySelector('#all-projects');
+    let lastProject = allProjects.lastElementChild;
     lastProject.addEventListener('click', () => {
             currentProject = lastProject.id;
+            if(display.className !== currentProject) {
+                display.replaceChildren();
+            }
+            display.className = lastProject.id;
         })
 }
 

@@ -11,7 +11,7 @@ function htmlBody() {
     <div id="all-todos">
         <input type="text"/>
         <button id="add-todo">&#10004;</button>
-        <div id="display" class="project-default"></div>
+        <div id="display" class="default-project"></div>
     </div>
 
     `
