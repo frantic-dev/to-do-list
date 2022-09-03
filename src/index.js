@@ -6,7 +6,7 @@ function htmlBody() {
         
     <div id="all-projects">
     <button id="add-project">ADD A PROJECT +</button>
-    <button id="default-project" >DEFAULT PROJECT</button>
+    <button id="default-project" class="project">DEFAULT PROJECT</button>
     </div>
     <div id="all-todos">
         <input type="text"/>

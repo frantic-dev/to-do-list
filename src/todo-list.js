@@ -11,6 +11,8 @@ function todo(title) {
     return {title}
 }
 
+let currentProject = "default-project";
+
 function todoList() {
     addTodo.addEventListener('click', () => {
         if(!!input.value) {
@@ -23,12 +25,12 @@ function todoList() {
     })
 }
 function storeTodoInProject(todoTitle) {
-    let project = allProjects['default-project'];
+    let project = allProjects[currentProject];
     project[project.length] = todo(todoTitle);
     return allProjects;
 }
 function displayTodo() {
-    let project = allProjects['default-project'];
+    let project = allProjects[currentProject];
     let newTask = project[project.length - 1];
         display.innerHTML += `
         <div class="to-do-item">
@@ -54,20 +56,31 @@ function checkItem () {
 }
 
 function addProject() {
+    switchProjects();
     const sectionProjects = document.querySelector('#all-projects');
     const addProjectBtn = document.querySelector('#add-project');
     addProjectBtn.addEventListener('click', () => {
         let newProject = document.createElement('button');
         newProject.textContent = prompt('what is the name of the new project?');
         newProject.id = newProject.textContent.split(' ').join('-');
+        newProject.className = "project";
         sectionProjects.appendChild(newProject);
         createProjectStorage(newProject.id);
+        switchProjects();
     })
 }
 function createProjectStorage(projectTitle) {
     allProjects[projectTitle] = [];
     console.log(allProjects);
 }
+
+function switchProjects () {
+    let lastProject = document.querySelector('#all-projects').lastElementChild;
+    lastProject.addEventListener('click', () => {
+            currentProject = lastProject.id;
+        })
+}
+
 
 todoList();
 addProject();
