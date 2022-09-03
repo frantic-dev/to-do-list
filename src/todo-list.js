@@ -57,6 +57,8 @@ function checkItem () {
     })
 }
 
+const projectsSection = document.querySelector('#all-projects');
+
 function addProject() {
     switchProjects();
     const sectionProjects = document.querySelector('#all-projects');
