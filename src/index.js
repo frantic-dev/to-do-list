@@ -3,6 +3,8 @@ import "../styles/style.scss";
 const body = document.querySelector('body');
 function htmlBody() {
     body.innerHTML = `
+    <h1>ToDo List</h1>
+
         
     <div id="all-projects">
     <button id="add-project">ADD A PROJECT +</button>

@@ -1,3 +1,5 @@
+$h1font: white;
+
 @mixin redBorder {
     border: 1px solid red;
 }
@@ -9,17 +11,42 @@
 body {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
+    background-image: url('../images/background.svg');
+    background-size: cover;
+    h1 {
+        width: 100vw;
+        text-align: center;
+        color: $h1font;
+        padding: 5vw;
+        font-size: 3vmax;
+    }
 }
 
 
 #all-projects {
-    // @include redBorder();
+    @include redBorder();
     display: flex;
     flex-direction: column;
     width: 20vw;
+    button {
+        padding: 10px;
+        width: 15vw;
+        margin: 10px;
+        
+    }
 }
 
 #all-todos {
-    // @include redBorder();
+    @include redBorder();
     width: 70vw;
+    input {
+        width: 50%;
+        font-size: 1.1rem;
+        padding: 5px 15px;
+        border-radius: 20px;
+        &:focus {
+            outline: none;
+        }
+    }
 }
