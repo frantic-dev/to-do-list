@@ -17,7 +17,7 @@ function todoList() {
     addTodo.addEventListener('click', () => {
         if(!!input.value) {
             storeTodoInProject(input.value);
-            displayTodo();
+            displayNewTodo();
             resetInput();
             checkItem();
             console.log(allProjects)
@@ -29,10 +29,9 @@ function storeTodoInProject(todoTitle) {
     project[project.length] = todo(todoTitle);
     return allProjects;
 }
-function displayTodo() {
+function displayNewTodo() {
     let project = allProjects[currentProject];
     let newTask = project[project.length - 1];
-    if (display.className === currentProject) {
         display.innerHTML += `
         <div class="to-do-item">
             <button class="check-mark" style="padding: 5px"></button>
@@ -41,7 +40,6 @@ function displayTodo() {
             </div>
         </div>
         `
-    }
 }
 
 function resetInput() {
@@ -87,9 +85,25 @@ function switchProjects () {
                 display.replaceChildren();
             }
             display.className = lastProject.id;
+            displayOldTasks();
         })
 }
 
+function displayOldTasks() {
+    let project = allProjects[currentProject];
+    let displayAllTasks = "";
+    for (let i = 0; i < project.length; i++ ) {
+        displayAllTasks += `
+        <div class="to-do-item">
+            <button class="check-mark" style="padding: 5px"></button>
+            <div class="to-do" style="display:inline-block">
+                ${project[i].title}
+            </div>
+        </div>
+        `
+    }
+    return display.innerHTML =  displayAllTasks;
+}
 
 todoList();
 addProject();
