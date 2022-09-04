@@ -45,7 +45,7 @@ function displayNewTodo() {
 }
 
 function resetInput() {
-    input.value = "";
+    form.reset();
 }
 
 function checkItem () {
