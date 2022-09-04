@@ -8,8 +8,8 @@ let allProjects = {
 };
 
 
-function todo(title) {
-    return {title}
+function todo(title, oldTasks) {
+    return {title, oldTasks}
 }
 
 let currentProject = "default-project";
@@ -82,6 +82,7 @@ function switchProjects () {
     let allProjects = document.querySelector('#all-projects');
     let lastProject = allProjects.lastElementChild;
     lastProject.addEventListener('click', () => {
+            rememberOldTasks();
             currentProject = lastProject.id;
             if(display.className !== currentProject) {
                 display.replaceChildren();
@@ -97,19 +98,13 @@ function autofocusInput() {
 }
 function displayOldTasks() {
     let project = allProjects[currentProject];
-    let displayAllTasks = "";
-    for (let i = 0; i < project.length; i++ ) {
-        displayAllTasks += `
-        <div class="to-do-item">
-            <button class="check-mark"></button>
-            <div class="to-do" style="display:inline-block">
-                ${project[i].title}
-            </div>
-        </div>
-        `
+    if (project.length !== 0){
+    return display.innerHTML =  project.oldTasks;
     }
-    return display.innerHTML =  displayAllTasks;
 }
-
+function rememberOldTasks () {
+    let project = allProjects[currentProject];  
+    project.oldTasks = display.innerHTML;
+}
 todoList();
 addProject();
