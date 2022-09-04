@@ -36,7 +36,7 @@ function displayNewTodo() {
     let newTask = project[project.length - 1];
         display.innerHTML += `
         <div class="to-do-item">
-            <button class="check-mark" style="padding: 5px"></button>
+            <button class="check-mark"></button>
             <div class="to-do" style="display:inline-block">
                 ${newTask.title}
             </div>
@@ -89,6 +89,7 @@ function switchProjects () {
             display.className = lastProject.id;
             displayOldTasks();
             autofocusInput();
+            checkItem();
         })
 }
 function autofocusInput() {
@@ -100,7 +101,7 @@ function displayOldTasks() {
     for (let i = 0; i < project.length; i++ ) {
         displayAllTasks += `
         <div class="to-do-item">
-            <button class="check-mark" style="padding: 5px"></button>
+            <button class="check-mark"></button>
             <div class="to-do" style="display:inline-block">
                 ${project[i].title}
             </div>

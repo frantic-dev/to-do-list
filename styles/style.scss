@@ -14,18 +14,20 @@ body {
     flex-wrap: wrap;
     background-image: url('../images/background.svg');
     background-size: cover;
+    background-repeat: no-repeat;
+    background-color: rgb(255 239 215);
     h1 {
         width: 100vw;
         text-align: center;
         color: $h1font;
-        padding: 5vw;
-        font-size: 3vmax;
+        padding: 4vw;
+        font-size: 3rem;
     }
 }
 
 
 #all-projects {
-    @include redBorder();
+    // @include redBorder();
     display: flex;
     flex-direction: column;
     width: 20vw;
@@ -38,15 +40,40 @@ body {
 }
 
 #all-todos {
-    @include redBorder();
+    // @include redBorder();
     width: 70vw;
     input {
         width: 50%;
         font-size: 1.1rem;
         padding: 5px 15px;
         border-radius: 20px;
+        margin-bottom: 20px;
         &:focus {
             outline: none;
         }
+    }
+    .to-do-item {
+        // @include redBorder();
+        display: flex;
+        // justify-content: baseline;
+        font-size: 1.3rem;
+        .check-mark {
+            height: 15px;
+            aspect-ratio: 1;
+            align-self: center;
+            margin-right: 10px;
+        }
+    }
+}
+.check {
+    .check-mark {
+        background-color: rgb(167, 167, 255);
+        border: 1px solid black;
+        border-radius: 2px;
+    }
+    .to-do {
+        text-decoration: line-through;
+        text-decoration-color: rgba(73, 71, 71, 0.582);
+        text-decoration-thickness: 2px;
     }
 }
