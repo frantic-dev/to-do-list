@@ -9,8 +9,10 @@ function htmlBody() {
     <button id="default-project" class="project">DEFAULT PROJECT</button>
     </div>
     <div id="all-todos">
-        <input type="text"/>
-        <button id="add-todo">&#10004;</button>
+        <form action="#">
+            <input type="text" autofocus/>
+            <button id="add-todo">&#10004;</button>
+        </form>
         <div id="display" class="default-project"></div>
     </div>
 

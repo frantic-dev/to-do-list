@@ -1,6 +1,7 @@
 const addTodo = document.querySelector('#add-todo');
 const input = document.querySelector('input');
 const display = document.querySelector('#display');
+const form = document.querySelector('form');
 
 let allProjects = {
     ['default-project']: []
@@ -14,7 +15,8 @@ function todo(title) {
 let currentProject = "default-project";
 
 function todoList() {
-    addTodo.addEventListener('click', () => {
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
         if(!!input.value) {
             storeTodoInProject(input.value);
             displayNewTodo();
@@ -86,9 +88,12 @@ function switchProjects () {
             }
             display.className = lastProject.id;
             displayOldTasks();
+            autofocusInput();
         })
 }
-
+function autofocusInput() {
+    input.focus();
+}
 function displayOldTasks() {
     let project = allProjects[currentProject];
     let displayAllTasks = "";
