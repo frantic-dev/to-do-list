@@ -10,6 +10,7 @@ function htmlBody() {
     <button id="add-project">ADD A PROJECT +</button>
     <button id="default-project" class="project">DEFAULT PROJECT</button>
     </div>
+    <div id="divider"></div>
     <div id="all-todos">
         <form action="#">
             <input type="text" autofocus/>

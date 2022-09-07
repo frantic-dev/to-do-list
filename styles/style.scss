@@ -30,33 +30,79 @@ body {
     // @include redBorder();
     display: flex;
     flex-direction: column;
-    width: 20vw;
+    align-items: center;
+    width: 30vw;
+    border-right: 5px solid rgba(255, 184, 184, 0.555);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding-right: 20px;
+    &:hover {
+        border-color: rgb(250, 138, 138);
+    }
     button {
         padding: 10px;
-        width: 15vw;
+        width: max(15vw, 10rem);
         margin: 10px;
-        
+        background-color: rgb(96, 163, 175);
+        color: white;
+        font-weight: 700;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        &:hover {
+            outline: 2px solid rgb(255, 255, 255);
+            box-shadow: 0 0 7px red;
+        }
     }
 }
-
 #all-todos {
     // @include redBorder();
-    width: 70vw;
+    width: 65vw;
     input {
         width: 50%;
         font-size: 1.1rem;
         padding: 5px 15px;
         border-radius: 20px;
         margin-bottom: 20px;
+        margin-top: 12px;
+        margin-left: 15px;
+        border-color: rgb(182, 179, 179);
         &:focus {
             outline: none;
+        }
+    }
+    #add-todo {
+        font-size: 21px;
+        aspect-ratio: 1;
+        position: relative;
+        top: 3px;
+        padding: 0 5px 2px;
+        margin-left: 5px;
+        // border: 1px solid black;
+        border: none;
+        box-shadow: 0 0 2px rgb(190, 132, 132);
+        border-radius: 5px;
+        color: rgb(96, 163, 175);
+        background-color: rgb(255, 255, 255);
+        &:hover {
+            // color: rgb(206, 106, 122);
+            box-shadow: 0 0 4px rgb(236, 144, 144);
         }
     }
     .to-do-item {
         // @include redBorder();
         display: flex;
-        // justify-content: baseline;
         font-size: 1.3rem;
+        background-color: rgb(255, 208, 208);
+        border-radius: 10px;
+        padding: 15px;
+        margin: 10px;
+        width: max(20em, 50%);
+        transition: scale 0.1s ease;
+        &:hover {
+            scale: 1.02;
+            background-color: pink;
+        }
         .check-mark {
             height: 15px;
             aspect-ratio: 1;
