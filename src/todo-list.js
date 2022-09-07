@@ -37,7 +37,11 @@ function todoList() {
 }
 function storeTodoInProject(todoTitle) {
     let project = allProjects[currentProject];
-    project[project.length] = todo(todoTitle);
+    if (currentProject !== "default-project" && project.length === 0) {
+        project[1] = todo(todoTitle);
+    } else {
+        project[project.length] = todo(todoTitle); 
+    }
     return allProjects;
 }
 function displayNewTodo() {
@@ -62,6 +66,8 @@ function checkItem () {
     checkMarks.forEach( mark => {
         mark.addEventListener('click', () => {
             mark.parentElement.classList.toggle('check');
+            allProjects[currentProject][0] = display.innerHTML;
+            updateLocalStorage();
         })
     })
 }
@@ -70,7 +76,6 @@ const projectsSection = document.querySelector('#all-projects');
 
 function addProject() {
     switchProjects();
-    const sectionProjects = document.querySelector('#all-projects');
     const addProjectBtn = document.querySelector('#add-project');
     addProjectBtn.addEventListener('click', (e) => {
         e.stopImmediatePropagation();
@@ -78,9 +83,10 @@ function addProject() {
         newProject.textContent = prompt('what is the name of the new project?');
         newProject.id = newProject.textContent.split(' ').join('-');
         newProject.className = "project";
-        sectionProjects.appendChild(newProject);
+        projectsSection.appendChild(newProject);
         createProjectStorage(newProject.id);
         switchProjects();
+        updateLocalStorage();
     })
 }
 function createProjectStorage(projectTitle) {
@@ -102,6 +108,7 @@ function switchProjects () {
             displayOldTasks();
             checkItem();
             focusInput();
+            updateLocalStorage();
         })
 }
 function focusInput() {
@@ -122,3 +129,21 @@ addProject();
 rememberOldTasks();
 displayOldTasks();
 checkItem();
+function showOldProjects () {
+    for (let project in allProjects){
+        console.log(allProjects)
+        console.log(project)
+        if(project !== "default-project") {
+         let newProject = document.createElement('button');
+        newProject.textContent = project.split('-').join(' ');
+        newProject.id = project;
+        newProject.className = "project";
+        projectsSection.appendChild(newProject);
+        switchProjects();
+        }
+    }
+}
+window.addEventListener('load',(e) => {
+    e.stopImmediatePropagation();
+    showOldProjects();
+})
