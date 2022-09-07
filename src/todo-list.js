@@ -1,5 +1,5 @@
-import updateLocalStorage from "./storage";
-
+import {updateLocalStorage} from "./storage";
+let allStoredProjects = JSON.parse(localStorage.getItem('allProjects'));
 const addTodo = document.querySelector('#add-todo');
 const input = document.querySelector('input');
 const display = document.querySelector('#display');
@@ -9,12 +9,17 @@ export let allProjects = {
     ['default-project']: []
 };
 
+let currentProject = "default-project";
 
-function todo(title, oldTasks) {
-    return {title, oldTasks}
+if (allStoredProjects) {
+    allProjects = allStoredProjects;
+    display.innerHTML = allStoredProjects[currentProject][0];
 }
 
-let currentProject = "default-project";
+function todo(title) {
+    return {title}
+}
+
 
 function todoList() {
     form.addEventListener('submit', (e) => {
@@ -22,6 +27,7 @@ function todoList() {
         if(!!input.value) {
             storeTodoInProject(input.value);
             displayNewTodo();
+            rememberOldTasks();
             resetInput();
             checkItem();
             console.log(allProjects)
@@ -94,6 +100,7 @@ function switchProjects () {
             display.className = lastProject.id;
             checkItem();
             displayOldTasks();
+            checkItem();
             focusInput();
         })
 }
@@ -103,12 +110,15 @@ function focusInput() {
 function displayOldTasks() {
     let project = allProjects[currentProject];
     if (project.length !== 0){
-    return display.innerHTML =  project.oldTasks;
+    return display.innerHTML =  project[0];
     }
 }
 function rememberOldTasks () {
     let project = allProjects[currentProject];  
-    project.oldTasks = display.innerHTML;
+    project[0] = display.innerHTML;
 }
 todoList();
 addProject();
+rememberOldTasks();
+displayOldTasks();
+checkItem();
