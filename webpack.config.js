@@ -6,7 +6,8 @@ module.exports = {
   mode: "development",
   entry: {
     index:'./src/index.js',
-    todolist:'./src/todo-list.js'
+    todolist:'./src/todo-list.js',
+    storage:'./src/storage.js'
   },
   devtool: 'inline-source-map',
   plugins: [

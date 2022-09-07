@@ -1,9 +1,11 @@
+import updateLocalStorage from "./storage";
+
 const addTodo = document.querySelector('#add-todo');
 const input = document.querySelector('input');
 const display = document.querySelector('#display');
 const form = document.querySelector('form');
 
-let allProjects = {
+export let allProjects = {
     ['default-project']: []
 };
 
@@ -23,6 +25,7 @@ function todoList() {
             resetInput();
             checkItem();
             console.log(allProjects)
+            updateLocalStorage();
         }
     })
 }
@@ -63,7 +66,8 @@ function addProject() {
     switchProjects();
     const sectionProjects = document.querySelector('#all-projects');
     const addProjectBtn = document.querySelector('#add-project');
-    addProjectBtn.addEventListener('click', () => {
+    addProjectBtn.addEventListener('click', (e) => {
+        e.stopImmediatePropagation();
         let newProject = document.createElement('button');
         newProject.textContent = prompt('what is the name of the new project?');
         newProject.id = newProject.textContent.split(' ').join('-');
@@ -88,12 +92,12 @@ function switchProjects () {
                 display.replaceChildren();
             }
             display.className = lastProject.id;
-            displayOldTasks();
-            autofocusInput();
             checkItem();
+            displayOldTasks();
+            focusInput();
         })
 }
-function autofocusInput() {
+function focusInput() {
     input.focus();
 }
 function displayOldTasks() {
