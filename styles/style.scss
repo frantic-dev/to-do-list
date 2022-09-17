@@ -1,4 +1,4 @@
-$h1font: white;
+$h1font: black;
 
 @mixin redBorder {
     border: 1px solid red;
@@ -12,10 +12,11 @@ body {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    background-image: url('../images/background.svg');
+    // background-image: url('../images/background.svg');
     background-size: cover;
     background-repeat: no-repeat;
     background-color: rgb(255 239 215);
+    font-family: monospace;
     h1 {
         width: 100vw;
         text-align: center;
@@ -99,15 +100,32 @@ body {
         margin: 10px;
         width: max(20em, 50%);
         transition: scale 0.1s ease;
+        position: relative;
         &:hover {
             scale: 1.02;
             background-color: pink;
+        }
+        .to-do {
+            align-self: center;
         }
         .check-mark {
             height: 15px;
             aspect-ratio: 1;
             align-self: center;
             margin-right: 10px;
+        }
+        .trash-icon {
+            height: 35px;
+            position: absolute;
+            right: 5%;
+            top: 10px;
+            padding: 5px;
+            background-color: rgb(250, 134, 134);
+            border: 1px solid white;
+            border-radius: 5px;
+            &:hover {
+                filter: saturate(150%);
+            }
         }
     }
 }

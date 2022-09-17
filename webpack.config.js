@@ -7,7 +7,8 @@ module.exports = {
   entry: {
     index:'./src/index.js',
     todolist:'./src/todo-list.js',
-    storage:'./src/storage.js'
+    storage:'./src/storage.js',
+    todos:'./src/todos.js'
   },
   devtool: 'inline-source-map',
   plugins: [
@@ -33,6 +34,10 @@ module.exports = {
           "sass-loader",
         ],
       },
+    {  
+      test: /\.(png|svg|jpg|jpeg|gif)$/i,
+      type: 'asset/resource',
+    },
     ],
   },
 };

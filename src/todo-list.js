@@ -1,15 +1,17 @@
 import {updateLocalStorage} from "./storage";
+import {addDeleteBtn, deleteTask} from "./todos";
+
 let allStoredProjects = JSON.parse(localStorage.getItem('allProjects'));
 const addTodo = document.querySelector('#add-todo');
 const input = document.querySelector('input');
-const display = document.querySelector('#display');
+export const display = document.querySelector('#display');
 const form = document.querySelector('form');
 
 export let allProjects = {
     ['default-project']: []
 };
 
-let currentProject = "default-project";
+export let currentProject = "default-project";
 
 if (allStoredProjects) {
     allProjects = allStoredProjects;
@@ -30,7 +32,7 @@ function todoList() {
             rememberOldTasks();
             resetInput();
             checkItem();
-            console.log(allProjects)
+            deleteTask();
             updateLocalStorage();
         }
     })
@@ -53,6 +55,7 @@ function displayNewTodo() {
             <div class="to-do" style="display:inline-block">
                 ${newTask.title}
             </div>
+            ${addDeleteBtn()}
         </div>
         `
 }
@@ -108,6 +111,7 @@ function switchProjects () {
             displayOldTasks();
             checkItem();
             focusInput();
+            deleteTask();
             updateLocalStorage();
         })
 }
