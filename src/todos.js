@@ -18,8 +18,8 @@ export function deleteTask() {
       let index = btnsArray.indexOf(btn) + 1;
       allProjects[currentProject].splice(index, 1);
       allProjects[currentProject][0] = display.innerHTML;
-    //   return allProjects;:
-    updateLocalStorage();
+      //   return allProjects;:
+      updateLocalStorage();
       console.log(allProjects);
     });
   });

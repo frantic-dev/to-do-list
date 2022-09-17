@@ -1,8 +1,8 @@
 import "../styles/style.scss";
 
-const body = document.querySelector('body');
+const body = document.querySelector("body");
 function htmlBody() {
-    body.innerHTML = `
+  body.innerHTML = `
     <h1>ToDo List</h1>
 
         
@@ -19,6 +19,6 @@ function htmlBody() {
         <div id="display" class="default-project"></div>
     </div>
 
-    `
+    `;
 }
 htmlBody();
