@@ -2,11 +2,11 @@ import { updateLocalStorage } from "./storage";
 import { addDeleteBtn, deleteTask } from "./todos";
 
 let allStoredProjects = JSON.parse(localStorage.getItem("allProjects"));
-const addTodo = document.querySelector("#add-todo");
 const input = document.querySelector("input");
 export const display = document.querySelector("#display");
 const form = document.querySelector("form");
-const dateInput = document.querySelector('#date-input');
+const dateInput = document.querySelector("#date-input");
+const priorityBtn = document.querySelector("#priority-btn");
 export let allProjects = {
   ["default-project"]: [],
 };
@@ -19,20 +19,22 @@ if (allStoredProjects) {
 }
 
 function todo(title, date) {
-  return { title , date};
+  return { title, date };
 }
 
 function todoList() {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     e.stopImmediatePropagation();
-      storeTodoInProject(input.value, dateInput.value);
-      displayNewTodo();
-      rememberOldTasks();
-      resetInput();
-      checkItem();
-      deleteTask();
-      updateLocalStorage();
+    storeTodoInProject(input.value, dateInput.value);
+    resetPriority();
+    // changePriority();
+    displayNewTodo();
+    rememberOldTasks();
+    resetInput();
+    checkItem();
+    deleteTask();
+    updateLocalStorage();
   });
 }
 function storeTodoInProject(todoTitle, todoDate) {
@@ -159,3 +161,29 @@ window.addEventListener("load", (e) => {
   e.stopImmediatePropagation();
   showOldProjects();
 });
+
+let clicks = 0;
+function changePriority() {
+  priorityBtn.addEventListener("click", (e) => {
+    e.stopImmediatePropagation();
+    clicks++;
+    if (clicks === 1) {
+      priorityBtn.textContent = "Mid";
+      priorityBtn.setAttribute("style", "background-color: green;");
+    } else if (clicks === 2) {
+      priorityBtn.textContent = 'High'
+      priorityBtn.setAttribute("style", "background-color: red;");
+    } else {
+      priorityBtn.textContent = 'Low'
+      priorityBtn.setAttribute("style", "background-color: grey;");
+      clicks = 0;
+    }
+  });
+}
+changePriority();
+function resetPriority() {
+  clicks = 0;
+  priorityBtn.textContent = 'Low'
+  priorityBtn.setAttribute("style", "background-color: grey;");
+  
+}
