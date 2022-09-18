@@ -25,7 +25,7 @@ function todo(title) {
 function todoList() {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    if (!!input.value) {
+    e.stopImmediatePropagation();
       storeTodoInProject(input.value);
       displayNewTodo();
       rememberOldTasks();
@@ -33,7 +33,6 @@ function todoList() {
       checkItem();
       deleteTask();
       updateLocalStorage();
-    }
   });
 }
 function storeTodoInProject(todoTitle) {

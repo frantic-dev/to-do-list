@@ -66,46 +66,60 @@ body {
     form {
         background-color: rgb(177, 184, 248);
         border-radius: 15px;
-    }
-    #task-input {
-        width: 50%;
         font-size: 1.1rem;
-        padding: 5px 15px;
-        border-radius: 20px;
-        margin-bottom: 12px;
-        margin-top: 12px;
-        margin-left: 15px;
-        border: 1px solid rgb(182, 179, 179);
-        &:focus {
-            outline: none;
+        #task-input {
+            width: 50%;
+            font-size: 1.1rem;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            margin-top: 12px;
+            margin-left: 15px;
+            border: 1px solid rgb(182, 179, 179);
+            &:focus {
+                outline: none;
+            }
         }
-    }
-    #date-input{
-        font-size: 1.1rem;
-        border: none;
-        padding: 2px 5px;
-        color: grey;
-        border-radius: 5px;
-        &:focus {
-            outline: 2px solid black;
+        #date-input{
+            font-size: 1.1rem;
+            border: none;
+            padding: 2px 5px;
+            color: grey;
+            border-radius: 5px;
+            &:focus {
+                outline: 2px solid black;
+            }
+        } 
+        #add-todo {
+            font-size: 21px;
+            aspect-ratio: 1;
+            position: relative;
+            top: 3px;
+            padding: 0 5px 2px;
+            margin-left: 5px;
+            // border: 1px solid black;
+            border: none;
+            box-shadow: 0 0 2px rgb(190, 132, 132);
+            border-radius: 5px;
+            color: rgb(96, 163, 175);
+            background-color: rgb(255, 255, 255);
+            &:hover {
+                // color: rgb(206, 106, 122);
+                box-shadow: 0 0 4px rgb(236, 144, 144);
+            }
         }
-    } 
-    #add-todo {
-        font-size: 21px;
-        aspect-ratio: 1;
-        position: relative;
-        top: 3px;
-        padding: 0 5px 2px;
-        margin-left: 5px;
-        // border: 1px solid black;
-        border: none;
-        box-shadow: 0 0 2px rgb(190, 132, 132);
-        border-radius: 5px;
-        color: rgb(96, 163, 175);
-        background-color: rgb(255, 255, 255);
-        &:hover {
-            // color: rgb(206, 106, 122);
-            box-shadow: 0 0 4px rgb(236, 144, 144);
+        #priority-btn {
+            display: inline-block;
+            background-color: rgb(143, 140, 140);
+            padding: 4px 15px;
+            border-radius: 10px;
+            color: white;
+            border: 2px solid white;
+            cursor: pointer;
+            &:hover{
+                filter: brightness(110%);
+                outline: 1px solid rgb(196, 195, 195);
+            }
         }
     }
     .to-do-item {

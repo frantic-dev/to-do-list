@@ -12,8 +12,9 @@ function htmlBody() {
     </div>
     <div id="all-todos">
         <form action="#">
-            <input type="text" id="task-input" placeholder='Enter your task' autofocus/>
-            <input type="date" id="date-input"/>
+            <input type="text" id="task-input" placeholder='Enter your task' autofocus required/>
+            <input type="date" id="date-input" required/>
+            <div id="priority-btn">Low</div>
             <button id="add-todo">&#10004;</button>
         </form>
         <div id="display" class="default-project"></div>
