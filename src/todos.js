@@ -13,7 +13,7 @@ export function deleteTask() {
   allDeleteBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       console.log(btn);
-      btn.parentElement.parentElement.remove();
+      btn.parentElement.parentElement.parentElement.remove();
       console.log(btnsArray.indexOf(btn));
       let index = btnsArray.indexOf(btn) + 1;
       allProjects[currentProject].splice(index, 1);

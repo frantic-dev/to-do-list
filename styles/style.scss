@@ -1,5 +1,9 @@
 $h1font: black;
-
+@mixin flex($type) {
+    display: flex;
+    justify-content: $type;
+    align-items: center;
+}
 @mixin redBorder {
     border: 1px solid red;
 }
@@ -92,7 +96,8 @@ body {
     }
     .to-do-item {
         // @include redBorder();
-        display: flex;
+        @include flex(space-between);
+        // display: flex;
         font-size: 1.3rem;
         background-color: rgb(255, 208, 208);
         border-radius: 10px;
@@ -100,7 +105,6 @@ body {
         margin: 10px;
         width: max(20em, 50%);
         transition: scale 0.1s ease;
-        position: relative;
         &:hover {
             scale: 1.02;
             background-color: pink;
@@ -116,9 +120,6 @@ body {
         }
         .trash-icon {
             height: 35px;
-            position: absolute;
-            right: 5%;
-            top: 10px;
             padding: 5px;
             background-color: rgb(250, 134, 134);
             border: 1px solid white;

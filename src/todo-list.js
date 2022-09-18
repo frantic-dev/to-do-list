@@ -50,11 +50,15 @@ function displayNewTodo() {
   let newTask = project[project.length - 1];
   display.innerHTML += `
         <div class="to-do-item">
+          <div>
             <button class="check-mark"></button>
             <div class="to-do" style="display:inline-block">
                 ${newTask.title}
             </div>
+          </div>
+          <div>
             ${addDeleteBtn()}
+          </div>
         </div>
         `;
 }
