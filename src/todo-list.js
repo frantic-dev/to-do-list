@@ -28,7 +28,6 @@ function todoList() {
     e.stopImmediatePropagation();
     storeTodoInProject(input.value, dateInput.value);
     resetPriority();
-    // changePriority();
     displayNewTodo();
     rememberOldTasks();
     resetInput();
@@ -117,6 +116,7 @@ function switchProjects() {
       display.replaceChildren();
     }
     display.className = lastProject.id;
+    highlightProject(lastProject);
     checkItem();
     displayOldTasks();
     checkItem();
@@ -186,4 +186,9 @@ function resetPriority() {
   priorityBtn.textContent = 'Low'
   priorityBtn.setAttribute("style", "background-color: grey;");
   
+}
+function highlightProject(project) {
+  const allProjects = document.querySelectorAll('.project');
+  allProjects.forEach(project => project.setAttribute('style', 'background-color: rgb(148, 158, 250);'))
+  project.setAttribute('style','background-color: rgb(255, 115, 169); outline: 2px solid white; box-shadow: 0 0 10px #ff06ff')
 }

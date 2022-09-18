@@ -14,7 +14,7 @@ $h1font: rgb(255, 29, 168);
  }
 body {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
     // background-image: url('../images/background.svg');
     background-size: cover;
@@ -36,7 +36,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 30vw;
+    width: 350px;
     border-right: 5px solid rgba(255, 184, 184, 0.555);
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -59,6 +59,11 @@ body {
             box-shadow: 0 0 7px red;
         }
     }
+    #default-project{
+        background-color: rgb(255, 115, 169); 
+        outline: 2px solid white; 
+        box-shadow: 0 0 10px #ff06ff;
+    }
 }
 #all-todos {
     // @include redBorder();
@@ -67,6 +72,7 @@ body {
     border-radius: 15px;
     form {
         font-size: 1.1rem;
+        @include flex(space-around, center);
         #task-input {
             width: 50%;
             font-size: 1.1rem;
@@ -130,7 +136,7 @@ body {
         background-color: rgb(255, 208, 208);
         border-radius: 10px;
         padding: 15px;
-        margin: 10px;
+        margin: 50px auto;
         width: max(20em, 800px);
         transition: scale 0.1s ease;
         &:hover {
