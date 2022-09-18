@@ -1,8 +1,8 @@
 $h1font: rgb(255, 29, 168);
-@mixin flex($type) {
+@mixin flex($justify,$align) {
     display: flex;
-    justify-content: $type;
-    align-items: center;
+    justify-content: $justify;
+    align-items: $align;
 }
 @mixin redBorder {
     border: 1px solid red;
@@ -14,7 +14,7 @@ $h1font: rgb(255, 29, 168);
  }
 body {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
     // background-image: url('../images/background.svg');
     background-size: cover;
@@ -63,9 +63,9 @@ body {
 #all-todos {
     // @include redBorder();
     width: 65vw;
+    background-color: rgb(177, 184, 248);
+    border-radius: 15px;
     form {
-        background-color: rgb(177, 184, 248);
-        border-radius: 15px;
         font-size: 1.1rem;
         #task-input {
             width: 50%;
@@ -124,27 +124,32 @@ body {
     }
     .to-do-item {
         // @include redBorder();
-        @include flex(space-between);
-        // display: flex;
+        @include flex(space-between, center);
         font-size: 1.3rem;
         background-color: rgb(255, 208, 208);
         border-radius: 10px;
         padding: 15px;
         margin: 10px;
-        width: max(20em, 50%);
+        width: max(20em, 800px);
         transition: scale 0.1s ease;
         &:hover {
             scale: 1.02;
             background-color: pink;
         }
+        & div:first-child:not(.delete-task) {
+            // @include redBorder();
+            @include flex(start, baseline)
+        }
         .to-do {
-            align-self: center;
+            width: 400px;
         }
         .check-mark {
             height: 15px;
             aspect-ratio: 1;
-            align-self: center;
             margin-right: 10px;
+        }
+        .date {
+            flex-basis: 115px;
         }
         .trash-icon {
             height: 35px;
@@ -156,6 +161,9 @@ body {
                 filter: saturate(150%);
             }
         }
+        .delete-task {
+            display: inline-block;
+        }       
     }
 }
 .check {

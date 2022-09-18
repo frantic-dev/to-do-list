@@ -6,7 +6,7 @@ const addTodo = document.querySelector("#add-todo");
 const input = document.querySelector("input");
 export const display = document.querySelector("#display");
 const form = document.querySelector("form");
-
+const dateInput = document.querySelector('#date-input');
 export let allProjects = {
   ["default-project"]: [],
 };
@@ -18,15 +18,15 @@ if (allStoredProjects) {
   display.innerHTML = allStoredProjects[currentProject][0];
 }
 
-function todo(title) {
-  return { title };
+function todo(title, date) {
+  return { title , date};
 }
 
 function todoList() {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     e.stopImmediatePropagation();
-      storeTodoInProject(input.value);
+      storeTodoInProject(input.value, dateInput.value);
       displayNewTodo();
       rememberOldTasks();
       resetInput();
@@ -35,12 +35,12 @@ function todoList() {
       updateLocalStorage();
   });
 }
-function storeTodoInProject(todoTitle) {
+function storeTodoInProject(todoTitle, todoDate) {
   let project = allProjects[currentProject];
   if (currentProject !== "default-project" && project.length === 0) {
-    project[1] = todo(todoTitle);
+    project[1] = todo(todoTitle, todoDate);
   } else {
-    project[project.length] = todo(todoTitle);
+    project[project.length] = todo(todoTitle, todoDate);
   }
   return allProjects;
 }
@@ -54,6 +54,9 @@ function displayNewTodo() {
             <div class="to-do" style="display:inline-block">
                 ${newTask.title}
             </div>
+          </div>
+          <div class="date">
+              ${newTask.date}
           </div>
           <div>
             ${addDeleteBtn()}
