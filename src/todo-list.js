@@ -18,15 +18,15 @@ if (allStoredProjects) {
   display.innerHTML = allStoredProjects[currentProject][0];
 }
 
-function todo(title, date) {
-  return { title, date };
+function todo(title, date, priority) {
+  return { title, date, priority };
 }
 
 function todoList() {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     e.stopImmediatePropagation();
-    storeTodoInProject(input.value, dateInput.value);
+    storeTodoInProject(input.value, dateInput.value, priorityBtn.textContent);
     resetPriority();
     displayNewTodo();
     rememberOldTasks();
@@ -36,12 +36,12 @@ function todoList() {
     updateLocalStorage();
   });
 }
-function storeTodoInProject(todoTitle, todoDate) {
+function storeTodoInProject(todoTitle, todoDate, todoPriority) {
   let project = allProjects[currentProject];
   if (currentProject !== "default-project" && project.length === 0) {
-    project[1] = todo(todoTitle, todoDate);
+    project[1] = todo(todoTitle, todoDate, todoPriority);
   } else {
-    project[project.length] = todo(todoTitle, todoDate);
+    project[project.length] = todo(todoTitle, todoDate, todoPriority);
   }
   return allProjects;
 }
@@ -58,6 +58,9 @@ function displayNewTodo() {
           </div>
           <div class="date">
               ${newTask.date}
+          </div>
+          <div class="priority">
+              ${newTask.priority}
           </div>
           <div>
             ${addDeleteBtn()}
@@ -121,6 +124,8 @@ function switchProjects() {
     displayOldTasks();
     checkItem();
     focusInput();
+    resetInput();
+    resetPriority();
     deleteTask();
     updateLocalStorage();
   });
@@ -190,5 +195,5 @@ function resetPriority() {
 function highlightProject(project) {
   const allProjects = document.querySelectorAll('.project');
   allProjects.forEach(project => project.setAttribute('style', 'background-color: rgb(148, 158, 250);'))
-  project.setAttribute('style','background-color: rgb(255, 115, 169); outline: 2px solid white; box-shadow: 0 0 10px #ff06ff')
+  project.setAttribute('style','background-color: rgb(255 117 141); outline: 2px solid white; box-shadow: 0 0 10px #ff06ff')
 }

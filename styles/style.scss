@@ -13,8 +13,9 @@ $h1font: rgb(255, 29, 168);
     box-sizing: border-box;
  }
 body {
+
     display: flex;
-    justify-content: space-around;
+    // justify-content: space-around;
     flex-wrap: wrap;
     // background-image: url('../images/background.svg');
     background-size: cover;
@@ -36,7 +37,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 350px;
+    width: 300px;
+    margin-right: 50px;
     border-right: 5px solid rgba(255, 184, 184, 0.555);
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -56,22 +58,23 @@ body {
         font-size: 16px;
         &:hover {
             outline: 2px solid rgb(255, 255, 255);
-            box-shadow: 0 0 7px red;
+            filter: hue-rotate(15deg);
         }
     }
     #default-project{
-        background-color: rgb(255, 115, 169); 
+        background-color: rgb(255 117 141); 
         outline: 2px solid white; 
         box-shadow: 0 0 10px #ff06ff;
     }
 }
 #all-todos {
     // @include redBorder();
-    width: 65vw;
+    width: 70vw;
     background-color: rgb(177, 184, 248);
     border-radius: 15px;
     form {
         font-size: 1.1rem;
+        margin-bottom: 50px;
         @include flex(space-around, center);
         #task-input {
             width: 50%;
@@ -136,7 +139,7 @@ body {
         background-color: rgb(255, 208, 208);
         border-radius: 10px;
         padding: 15px;
-        margin: 50px auto;
+        margin: 20px auto;
         width: max(20em, 800px);
         transition: scale 0.1s ease;
         &:hover {
