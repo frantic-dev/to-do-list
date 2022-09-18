@@ -9,7 +9,6 @@ export function addDeleteBtn() {
 export function deleteTask() {
   const allDeleteBtns = document.querySelectorAll(".trash-icon");
   let btnsArray = [...allDeleteBtns];
-  console.log(allDeleteBtns);
   allDeleteBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       console.log(btn);
@@ -25,3 +24,6 @@ export function deleteTask() {
   });
 }
 deleteTask();
+import { formatDistance, subDays } from 'date-fns'
+
+console.log(formatDistance(subDays(new Date(), 4), new Date(), { addSuffix: true }))

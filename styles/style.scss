@@ -1,4 +1,4 @@
-$h1font: black;
+$h1font: rgb(255, 29, 168);
 @mixin flex($type) {
     display: flex;
     justify-content: $type;
@@ -48,8 +48,8 @@ body {
         padding: 10px;
         width: max(15vw, 10rem);
         margin: 10px;
-        background-color: rgb(96, 163, 175);
-        color: white;
+        background-color: rgb(148, 158, 250);
+        color: rgb(255, 255, 255);
         font-weight: 700;
         border: none;
         border-radius: 10px;
@@ -63,19 +63,33 @@ body {
 #all-todos {
     // @include redBorder();
     width: 65vw;
-    input {
+    form {
+        background-color: rgb(177, 184, 248);
+        border-radius: 15px;
+    }
+    #task-input {
         width: 50%;
         font-size: 1.1rem;
         padding: 5px 15px;
         border-radius: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 12px;
         margin-top: 12px;
         margin-left: 15px;
-        border-color: rgb(182, 179, 179);
+        border: 1px solid rgb(182, 179, 179);
         &:focus {
             outline: none;
         }
     }
+    #date-input{
+        font-size: 1.1rem;
+        border: none;
+        padding: 2px 5px;
+        color: grey;
+        border-radius: 5px;
+        &:focus {
+            outline: 2px solid black;
+        }
+    } 
     #add-todo {
         font-size: 21px;
         aspect-ratio: 1;
