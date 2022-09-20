@@ -1,8 +1,9 @@
 import { allProjects, currentProject, display } from "./todo-list";
 import { updateLocalStorage } from "./storage";
+import trashIcon from '../images/icons8-trash-32.png';
 export function addDeleteBtn() {
   return `    <div class="delete-task">
-    <img class="trash-icon" src="../images/icons8-trash-32.png" alt="image of a trash can"/>
+    <img class="trash-icon" src="${trashIcon}" alt="image of a trash can"/>
 </div>
     `;
 }
