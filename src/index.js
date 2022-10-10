@@ -7,7 +7,12 @@ function htmlBody() {
 
         
     <div id="all-projects">
-    <button id="add-project">ADD A PROJECT +</button>
+    <div>Projects
+        <div>
+            <span id="add-project">+</span>
+            <span id="edit-projects"><img src="https://img.icons8.com/ios/50/000000/edit--v1.png"/></span>
+        </div>
+    </div>
     <button id="all" class="project">all</button>
     </div>
     <div id="all-todos">

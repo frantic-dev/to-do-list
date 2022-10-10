@@ -39,3 +39,11 @@ deleteTask();
 //   }
 // }
 
+function displayDeleteProjectsBtns() {
+  let deleteProjectBtns = document.querySelectorAll('.project span');
+  deleteProjectBtns.forEach( btn => {
+     btn.style.display = "inline-block";
+  })
+}
+let editProjectsBtn = document.querySelector('#edit-projects');
+editProjectsBtn.addEventListener('click', displayDeleteProjectsBtns)

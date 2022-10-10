@@ -8,7 +8,7 @@ const form = document.querySelector("form");
 const dateInput = document.querySelector("#date-input");
 const priorityBtn = document.querySelector("#priority-btn");
 export let allProjects = {
-  ["all"]:[""],
+  ["all"]: [""],
   ["default-project"]: [],
 };
 
@@ -79,7 +79,25 @@ function displayNewTodo() {
           </div>
         </div>
         `;
-  allProjects["all"][0] += display.innerHTML;
+        allProjects["all"][0] += `
+        <div class="to-do-item">
+          <div>
+            <button class="check-mark"></button>
+            <div class="to-do" style="display:inline-block">
+                ${newTask.title}
+            </div>
+          </div>
+          <div class="date">
+              ${newTask.date}
+          </div>
+          <div class="priority">
+              ${newTask.priority}
+          </div>
+          <div>
+            ${addDeleteBtn()}
+          </div>
+        </div>
+        `;
 }
 
 function resetInput() {
@@ -107,10 +125,13 @@ function addProject() {
     let name = prompt("what is the name of the new project?");
     if (name !== "") {
       let newProject = document.createElement("button");
+      let deleteProjectBtn = document.createElement("span");
+      deleteProjectBtn.textContent = "-";
       newProject.textContent = name;
       newProject.id = name.split(" ").join("-");
       newProject.className = "project";
       projectsSection.appendChild(newProject);
+      newProject.appendChild(deleteProjectBtn);
       createProjectStorage(newProject.id);
       switchProjects();
       updateLocalStorage();
@@ -166,12 +187,15 @@ function showOldProjects() {
     console.log(allProjects);
     console.log(project);
     if (project !== "all") {
-    let newProject = document.createElement("button");
-    newProject.textContent = project.split("-").join(" ");
-    newProject.id = project;
-    newProject.className = "project";
-    projectsSection.appendChild(newProject);
-    switchProjects();
+      let newProject = document.createElement("button");
+      newProject.textContent = project.split("-").join(" ");
+      newProject.id = project;
+      newProject.className = "project";
+      projectsSection.appendChild(newProject);
+      let deleteProjectBtn = document.createElement("span");
+      deleteProjectBtn.textContent = "-";
+      newProject.appendChild(deleteProjectBtn);
+      switchProjects();
     }
   }
 }
@@ -207,7 +231,10 @@ function resetPriority() {
 function highlightProject(project) {
   const allProjects = document.querySelectorAll(".project");
   allProjects.forEach((project) =>
-    project.setAttribute("style", "background-color: rgb(148, 158, 250); box-shadow: none;")
+    project.setAttribute(
+      "style",
+      "background-color: rgb(148, 158, 250); box-shadow: none;"
+    )
   );
   project.setAttribute(
     "style",
