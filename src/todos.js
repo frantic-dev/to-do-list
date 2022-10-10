@@ -12,19 +12,30 @@ export function deleteTask() {
   let btnsArray = [...allDeleteBtns];
   allDeleteBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-      console.log(btn);
       btn.parentElement.parentElement.parentElement.remove();
-      console.log(btnsArray.indexOf(btn));
       let index = btnsArray.indexOf(btn) + 1;
       allProjects[currentProject].splice(index, 1);
       allProjects[currentProject][0] = display.innerHTML;
-      //   return allProjects;:
       updateLocalStorage();
       console.log(allProjects);
     });
   });
 }
 deleteTask();
-import { formatDistance, subDays } from 'date-fns'
+// import { formatDistance, subDays } from 'date-fns'
+// import { Value } from "sass";
 
-console.log(formatDistance(subDays(new Date(), 4), new Date(), { addSuffix: true }))
+// console.log(formatDistance(subDays(new Date(), 4), new Date(), { addSuffix: true }))
+
+// function addTaskToAll() {
+
+// }
+// export function defaultDate(value) {
+//   if (value === "") {
+//     let day = new Date().getDate();
+//     let month = new Date().getMonth();
+//     let year = new Date().getMonth();
+//     return (value = `${day}-${month}-${year}`);
+//   }
+// }
+

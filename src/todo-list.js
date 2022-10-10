@@ -8,6 +8,7 @@ const form = document.querySelector("form");
 const dateInput = document.querySelector("#date-input");
 const priorityBtn = document.querySelector("#priority-btn");
 export let allProjects = {
+  ["all"]:[""],
   ["default-project"]: [],
 };
 
@@ -27,6 +28,7 @@ function todoList() {
     e.preventDefault();
     e.stopImmediatePropagation();
     storeTodoInProject(input.value, dateInput.value, priorityBtn.textContent);
+    addTaskInAll(input.value, dateInput.value, priorityBtn.textContent);
     resetPriority();
     displayNewTodo();
     rememberOldTasks();
@@ -34,11 +36,21 @@ function todoList() {
     checkItem();
     deleteTask();
     updateLocalStorage();
+    console.log(allProjects);
   });
 }
 function storeTodoInProject(todoTitle, todoDate, todoPriority) {
   let project = allProjects[currentProject];
-  if (currentProject !== "default-project" && project.length === 0) {
+  if (project.length === 0) {
+    project[1] = todo(todoTitle, todoDate, todoPriority);
+  } else {
+    project[project.length] = todo(todoTitle, todoDate, todoPriority);
+  }
+  return allProjects;
+}
+function addTaskInAll(todoTitle, todoDate, todoPriority) {
+  let project = allProjects["all"];
+  if (project.length === 0) {
     project[1] = todo(todoTitle, todoDate, todoPriority);
   } else {
     project[project.length] = todo(todoTitle, todoDate, todoPriority);
@@ -67,6 +79,7 @@ function displayNewTodo() {
           </div>
         </div>
         `;
+  allProjects["all"][0] += display.innerHTML;
 }
 
 function resetInput() {
@@ -152,13 +165,13 @@ function showOldProjects() {
   for (let project in allProjects) {
     console.log(allProjects);
     console.log(project);
-    if (project !== "default-project") {
-      let newProject = document.createElement("button");
-      newProject.textContent = project.split("-").join(" ");
-      newProject.id = project;
-      newProject.className = "project";
-      projectsSection.appendChild(newProject);
-      switchProjects();
+    if (project !== "all") {
+    let newProject = document.createElement("button");
+    newProject.textContent = project.split("-").join(" ");
+    newProject.id = project;
+    newProject.className = "project";
+    projectsSection.appendChild(newProject);
+    switchProjects();
     }
   }
 }
@@ -176,10 +189,10 @@ function changePriority() {
       priorityBtn.textContent = "Mid";
       priorityBtn.setAttribute("style", "background-color: green;");
     } else if (clicks === 2) {
-      priorityBtn.textContent = 'High'
+      priorityBtn.textContent = "High";
       priorityBtn.setAttribute("style", "background-color: red;");
     } else {
-      priorityBtn.textContent = 'Low'
+      priorityBtn.textContent = "Low";
       priorityBtn.setAttribute("style", "background-color: grey;");
       clicks = 0;
     }
@@ -188,12 +201,16 @@ function changePriority() {
 changePriority();
 function resetPriority() {
   clicks = 0;
-  priorityBtn.textContent = 'Low'
+  priorityBtn.textContent = "Low";
   priorityBtn.setAttribute("style", "background-color: grey;");
-  
 }
 function highlightProject(project) {
-  const allProjects = document.querySelectorAll('.project');
-  allProjects.forEach(project => project.setAttribute('style', 'background-color: rgb(148, 158, 250);'))
-  project.setAttribute('style','background-color: rgb(255 117 141); outline: 2px solid white; box-shadow: 0 0 10px #ff06ff')
+  const allProjects = document.querySelectorAll(".project");
+  allProjects.forEach((project) =>
+    project.setAttribute("style", "background-color: rgb(148, 158, 250); box-shadow: none;")
+  );
+  project.setAttribute(
+    "style",
+    "background-color: rgb(255 117 141); outline: 2px solid white; box-shadow: 0 0 10px #ff06ff"
+  );
 }
