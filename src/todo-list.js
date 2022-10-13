@@ -16,7 +16,6 @@ export let currentProject = "default-project";
 
 if (allStoredProjects) {
   allProjects = allStoredProjects;
-  // display.innerHTML = allStoredProjects[currentProject][0];
 }
 
 function todo(title, date, priority, done) {
@@ -31,7 +30,6 @@ function todoList() {
     if(currentProject !== 'all') addTaskInAll(input.value, dateInput.value, priorityBtn.textContent);
     resetPriority();
     displayNewTodo();
-    // rememberOldTasks();
     resetInput();
     checkItem();
     deleteTask();
@@ -41,20 +39,12 @@ function todoList() {
 }
 function storeTodoInProject(todoTitle, todoDate, todoPriority) {
   let project = allProjects[currentProject];
-  // if (project.length === 0) {
-  //   project[1] = todo(todoTitle, todoDate, todoPriority);
-  // } else {
   project[project.length] = todo(todoTitle, todoDate, todoPriority, "no");
-  // }
   return allProjects;
 }
 function addTaskInAll(todoTitle, todoDate, todoPriority) {
   let project = allProjects["all"];
-  // if (project.length === 0) {
-  //   project[1] = todo(todoTitle, todoDate, todoPriority);
-  // } else {
   project[project.length] = todo(todoTitle, todoDate, todoPriority, "no");
-  // }
   return allProjects;
 }
 function displayNewTodo() {
@@ -88,28 +78,21 @@ function resetInput() {
 function checkItem() {
   let checkMarks = document.querySelectorAll(".check-mark");
   checkMarks.forEach((mark) => {
+    let index = [...checkMarks].indexOf(mark);
+    let task = allProjects[currentProject][index];
     mark.addEventListener("click", () => {
       checkMarks = document.querySelectorAll(".check-mark");
-      let index = [...checkMarks].indexOf(mark);
-      // mark.parentElement.classList.toggle("check");
-      let task = allProjects[currentProject][index];
-      if (task === "yes") {
+      if (task.done === "yes") {
         task.done = "no";
         mark.parentElement.classList.remove("check");
-        return task
       } else {
         task.done = "yes";
         mark.parentElement.className = "check";
-        return task
       } 
-      // allProjects[currentProject][0] = display.innerHTML;
       console.log(index)
-      // if(mark.parentElement.className === 'check') {
-      //   allProjects[currentProject][index].done = "yes";
-      // } else allProjects[currentProject][index].done = "no";
-      console.log(allProjects[currentProject][index].done)
-      updateLocalStorage();
-    });
+        console.log(allProjects[currentProject][index].done)
+        updateLocalStorage();
+      });
   });
 }
 
@@ -144,7 +127,6 @@ function switchProjects() {
   let Projects = document.querySelector("#all-projects");
   let lastProject = Projects.lastElementChild;
   lastProject.addEventListener("click", () => {
-    // rememberOldTasks();
     currentProject = lastProject.id;
     if (display.className !== currentProject) {
       display.replaceChildren();
@@ -153,7 +135,6 @@ function switchProjects() {
     highlightProject(lastProject);
     checkItem();
     displayOldTasks();
-    checkItem();
     focusInput();
     resetInput();
     resetPriority();
@@ -166,14 +147,9 @@ function focusInput() {
   input.focus();
 }
 function displayOldTasks() {
-  // let project = allProjects[currentProject];
-  // if (project.length !== 0) {
-  //   return (display.innerHTML = project[0]);
-  // }
   let displayTasks = "";
   let project = allProjects[currentProject];
   project.forEach((task) => {
-    // console.log(task);
     displayTasks += `
     <div class="to-do-item">
       <div>
@@ -195,14 +171,27 @@ function displayOldTasks() {
     `;
   });
   display.innerHTML = displayTasks;
+  rememberOldCheckedItems();
+  checkItem();
 }
-function rememberOldTasks() {
+
+function rememberOldCheckedItems() {
   let project = allProjects[currentProject];
-  project[0] = display.innerHTML;
-}
+  project.forEach((task) => {
+    let index = project.indexOf(task);
+    let Items  = document.querySelectorAll('.to-do-item');
+    if (task.done === "yes") {
+      let targetDiv = Items[index].firstElementChild;
+      targetDiv.className = "check";
+    } else {
+      let targetDiv = Items[index].firstElementChild;
+      targetDiv.classList.remove("check");
+    }
+  })
+};
+
 todoList();
 addProject();
-// rememberOldTasks();
 setTimeout(() => {
   displayOldTasks();
 }, 500); 
