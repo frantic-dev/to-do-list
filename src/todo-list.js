@@ -149,6 +149,7 @@ function focusInput() {
 function displayOldTasks() {
   let displayTasks = "";
   let project = allProjects[currentProject];
+  if(Object.keys(allProjects).length !== 0){
   project.forEach((task) => {
     displayTasks += `
     <div class="to-do-item">
@@ -173,6 +174,7 @@ function displayOldTasks() {
   display.innerHTML = displayTasks;
   rememberOldCheckedItems();
   checkItem();
+}
 }
 
 function rememberOldCheckedItems() {

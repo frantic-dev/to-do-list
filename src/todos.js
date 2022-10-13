@@ -1,4 +1,4 @@
-import { allProjects, currentProject, display } from "./todo-list";
+import { allProjects, currentProject } from "./todo-list";
 import { updateLocalStorage } from "./storage";
 import trashIcon from '../images/icons8-trash-32.png';
 export function addDeleteBtn() {
@@ -54,6 +54,16 @@ function displayDeleteProjectsBtns() {
   let deleteProjectBtns = document.querySelectorAll('.project span');
   deleteProjectBtns.forEach( btn => {
      btn.style.display = "inline-block";
+     btn.addEventListener('click', (e)=> {
+       e.stopImmediatePropagation();
+       let index = [...deleteProjectBtns].indexOf(btn);
+       let targetProject = deleteProjectBtns[index].parentElement;
+       targetProject.remove();
+       delete allProjects[targetProject.id];
+       console.log(targetProject.id)
+       console.log(allProjects)
+       updateLocalStorage()
+    })
   })
 }
 let editProjectsBtn = document.querySelector('#edit-projects');
