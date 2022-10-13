@@ -115,13 +115,12 @@ function checkItem() {
 
 const projectsSection = document.querySelector("#all-projects");
 
-switchProjects();
 function addProject() {
   const addProjectBtn = document.querySelector("#add-project");
   addProjectBtn.addEventListener("click", (e) => {
     e.stopImmediatePropagation();
     let name = prompt("what is the name of the new project?");
-    if (name !== "") {
+    if (name !== "" && name !== null) {
       let newProject = document.createElement("button");
       let deleteProjectBtn = document.createElement("span");
       deleteProjectBtn.textContent = "-";
