@@ -8,20 +8,31 @@ export function addDeleteBtn() {
     `;
 }
 export function deleteTask() {
-  const allDeleteBtns = document.querySelectorAll(".trash-icon");
+  let allDeleteBtns = document.querySelectorAll(".trash-icon");
   let btnsArray = [...allDeleteBtns];
   allDeleteBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
+      allDeleteBtns = document.querySelectorAll(".trash-icon");
+      btnsArray = [...allDeleteBtns];
       btn.parentElement.parentElement.parentElement.remove();
-      let index = btnsArray.indexOf(btn) + 1;
+      let index = btnsArray.indexOf(btn);
+      console.log(index)
+      console.log(allProjects[currentProject][index])
+      deleteFromAll(allProjects[currentProject][index])
       allProjects[currentProject].splice(index, 1);
-      allProjects[currentProject][0] = display.innerHTML;
+      // allProjects[currentProject][0] = display.innerHTML;
       updateLocalStorage();
       console.log(allProjects);
     });
   });
 }
 deleteTask();
+function deleteFromAll (deletedProp) {
+  let index = allProjects["all"].findIndex(prop => prop.title === deletedProp.title);
+  console.log(index);
+  allProjects["all"].splice(index, 1);
+}
+
 // import { formatDistance, subDays } from 'date-fns'
 // import { Value } from "sass";
 

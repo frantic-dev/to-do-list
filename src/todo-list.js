@@ -8,7 +8,7 @@ const form = document.querySelector("form");
 const dateInput = document.querySelector("#date-input");
 const priorityBtn = document.querySelector("#priority-btn");
 export let allProjects = {
-  ["all"]: [""],
+  ["all"]: [],
   ["default-project"]: [],
 };
 
@@ -16,11 +16,11 @@ export let currentProject = "default-project";
 
 if (allStoredProjects) {
   allProjects = allStoredProjects;
-  display.innerHTML = allStoredProjects[currentProject][0];
+  // display.innerHTML = allStoredProjects[currentProject][0];
 }
 
-function todo(title, date, priority) {
-  return { title, date, priority };
+function todo(title, date, priority, done) {
+  return { title, date, priority, done };
 }
 
 function todoList() {
@@ -28,10 +28,10 @@ function todoList() {
     e.preventDefault();
     e.stopImmediatePropagation();
     storeTodoInProject(input.value, dateInput.value, priorityBtn.textContent);
-    addTaskInAll(input.value, dateInput.value, priorityBtn.textContent);
+    if(currentProject !== 'all') addTaskInAll(input.value, dateInput.value, priorityBtn.textContent);
     resetPriority();
     displayNewTodo();
-    rememberOldTasks();
+    // rememberOldTasks();
     resetInput();
     checkItem();
     deleteTask();
@@ -41,45 +41,26 @@ function todoList() {
 }
 function storeTodoInProject(todoTitle, todoDate, todoPriority) {
   let project = allProjects[currentProject];
-  if (project.length === 0) {
-    project[1] = todo(todoTitle, todoDate, todoPriority);
-  } else {
-    project[project.length] = todo(todoTitle, todoDate, todoPriority);
-  }
+  // if (project.length === 0) {
+  //   project[1] = todo(todoTitle, todoDate, todoPriority);
+  // } else {
+  project[project.length] = todo(todoTitle, todoDate, todoPriority, "no");
+  // }
   return allProjects;
 }
 function addTaskInAll(todoTitle, todoDate, todoPriority) {
   let project = allProjects["all"];
-  if (project.length === 0) {
-    project[1] = todo(todoTitle, todoDate, todoPriority);
-  } else {
-    project[project.length] = todo(todoTitle, todoDate, todoPriority);
-  }
+  // if (project.length === 0) {
+  //   project[1] = todo(todoTitle, todoDate, todoPriority);
+  // } else {
+  project[project.length] = todo(todoTitle, todoDate, todoPriority, "no");
+  // }
   return allProjects;
 }
 function displayNewTodo() {
   let project = allProjects[currentProject];
   let newTask = project[project.length - 1];
   display.innerHTML += `
-        <div class="to-do-item">
-          <div>
-            <button class="check-mark"></button>
-            <div class="to-do" style="display:inline-block">
-                ${newTask.title}
-            </div>
-          </div>
-          <div class="date">
-              ${newTask.date}
-          </div>
-          <div class="priority">
-              ${newTask.priority}
-          </div>
-          <div>
-            ${addDeleteBtn()}
-          </div>
-        </div>
-        `;
-        allProjects["all"][0] += `
         <div class="to-do-item">
           <div>
             <button class="check-mark"></button>
@@ -108,8 +89,25 @@ function checkItem() {
   let checkMarks = document.querySelectorAll(".check-mark");
   checkMarks.forEach((mark) => {
     mark.addEventListener("click", () => {
-      mark.parentElement.classList.toggle("check");
-      allProjects[currentProject][0] = display.innerHTML;
+      checkMarks = document.querySelectorAll(".check-mark");
+      let index = [...checkMarks].indexOf(mark);
+      // mark.parentElement.classList.toggle("check");
+      let task = allProjects[currentProject][index];
+      if (task === "yes") {
+        task.done = "no";
+        mark.parentElement.classList.remove("check");
+        return task
+      } else {
+        task.done = "yes";
+        mark.parentElement.className = "check";
+        return task
+      } 
+      // allProjects[currentProject][0] = display.innerHTML;
+      console.log(index)
+      // if(mark.parentElement.className === 'check') {
+      //   allProjects[currentProject][index].done = "yes";
+      // } else allProjects[currentProject][index].done = "no";
+      console.log(allProjects[currentProject][index].done)
       updateLocalStorage();
     });
   });
@@ -117,8 +115,8 @@ function checkItem() {
 
 const projectsSection = document.querySelector("#all-projects");
 
+switchProjects();
 function addProject() {
-  switchProjects();
   const addProjectBtn = document.querySelector("#add-project");
   addProjectBtn.addEventListener("click", (e) => {
     e.stopImmediatePropagation();
@@ -144,10 +142,10 @@ function createProjectStorage(projectTitle) {
 }
 
 function switchProjects() {
-  let allProjects = document.querySelector("#all-projects");
-  let lastProject = allProjects.lastElementChild;
+  let Projects = document.querySelector("#all-projects");
+  let lastProject = Projects.lastElementChild;
   lastProject.addEventListener("click", () => {
-    rememberOldTasks();
+    // rememberOldTasks();
     currentProject = lastProject.id;
     if (display.className !== currentProject) {
       display.replaceChildren();
@@ -162,16 +160,42 @@ function switchProjects() {
     resetPriority();
     deleteTask();
     updateLocalStorage();
+    console.log(allProjects)
   });
 }
 function focusInput() {
   input.focus();
 }
 function displayOldTasks() {
+  // let project = allProjects[currentProject];
+  // if (project.length !== 0) {
+  //   return (display.innerHTML = project[0]);
+  // }
+  let displayTasks = "";
   let project = allProjects[currentProject];
-  if (project.length !== 0) {
-    return (display.innerHTML = project[0]);
-  }
+  project.forEach((task) => {
+    // console.log(task);
+    displayTasks += `
+    <div class="to-do-item">
+      <div>
+        <button class="check-mark"></button>
+        <div class="to-do" style="display:inline-block">
+            ${task.title}
+        </div>
+      </div>
+      <div class="date">
+          ${task.date}
+      </div>
+      <div class="priority">
+          ${task.priority}
+      </div>
+      <div>
+        ${addDeleteBtn()}
+      </div>
+    </div>
+    `;
+  });
+  display.innerHTML = displayTasks;
 }
 function rememberOldTasks() {
   let project = allProjects[currentProject];
@@ -179,24 +203,24 @@ function rememberOldTasks() {
 }
 todoList();
 addProject();
-rememberOldTasks();
-displayOldTasks();
+// rememberOldTasks();
+setTimeout(() => {
+  displayOldTasks();
+}, 500); 
 checkItem();
 function showOldProjects() {
   for (let project in allProjects) {
     console.log(allProjects);
     console.log(project);
-    if (project !== "all") {
-      let newProject = document.createElement("button");
-      newProject.textContent = project.split("-").join(" ");
-      newProject.id = project;
-      newProject.className = "project";
-      projectsSection.appendChild(newProject);
-      let deleteProjectBtn = document.createElement("span");
-      deleteProjectBtn.textContent = "-";
-      newProject.appendChild(deleteProjectBtn);
-      switchProjects();
-    }
+    let newProject = document.createElement("button");
+    newProject.textContent = project.split("-").join(" ");
+    newProject.id = project;
+    newProject.className = "project";
+    projectsSection.appendChild(newProject);
+    let deleteProjectBtn = document.createElement("span");
+    deleteProjectBtn.textContent = "-";
+    newProject.appendChild(deleteProjectBtn);
+    switchProjects();
   }
 }
 window.addEventListener("load", (e) => {
