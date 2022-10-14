@@ -20,7 +20,7 @@ export function deleteTask() {
       console.log(allProjects[currentProject][index]);
       deleteFromAll(allProjects[currentProject][index]);
       allProjects[currentProject].splice(index, 1);
-      // allProjects[currentProject][0] = display.innerHTML;
+      updateTasksScore();
       updateLocalStorage();
       console.log(allProjects);
     });

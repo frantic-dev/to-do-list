@@ -18,6 +18,7 @@ body {
     // justify-content: ;
     flex-wrap: wrap;
     // background-image: url('../images/background.svg');
+    margin-bottom: 50px;
     background-size: cover;
     background-repeat: no-repeat;
     background-color: rgb(255 239 215);
@@ -66,14 +67,16 @@ body {
             right: -40px;
             bottom: 4px;
             font-size: 25px;
-            background-color: #e9bcbc;
+            background-color: rgb(179, 208, 250);
             border-radius: 50%;
             aspect-ratio: 1 / 1;
             height: 30px;
             display: none;
+            border: 1px solid rgb(255, 255, 255);
             &:hover {
                 filter: brightness(150%);
                 color: black;
+                border: 1px solid rgb(100, 100, 100);
             }
         }
       }
