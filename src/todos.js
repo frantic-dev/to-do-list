@@ -73,10 +73,16 @@ editProjectsBtn.addEventListener("click",displayDeleteProjectsBtns);
 
 window.addEventListener("click", (e) => {
   if (e.target !== editProjectsBtn) {
-    console.log(e.target.id);
     let deleteProjectBtns = document.querySelectorAll(".project span");
     deleteProjectBtns.forEach((btn) => {
       btn.style.display = "none";
     });
   }
 });
+export function updateTasksScore () {
+  let scoreDiv = document.querySelector('#tasks-score');
+  let tasksTotal = document.querySelectorAll('.to-do-item').length;
+  let completedTasksScore = document.querySelectorAll('.check').length;
+  let uncompletedTasksScore = tasksTotal - completedTasksScore;
+  scoreDiv.textContent = `Total: ${tasksTotal} Completed: ${completedTasksScore} Rest: ${uncompletedTasksScore}`;
+}

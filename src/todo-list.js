@@ -1,5 +1,5 @@
 import { updateLocalStorage } from "./storage";
-import { addDeleteBtn, deleteTask } from "./todos";
+import { addDeleteBtn, deleteTask, updateTasksScore } from "./todos";
 
 let allStoredProjects = JSON.parse(localStorage.getItem("allProjects"));
 const input = document.querySelector("input");
@@ -33,6 +33,7 @@ function todoList() {
     resetInput();
     checkItem();
     deleteTask();
+    updateTasksScore();
     updateLocalStorage();
     console.log(allProjects);
   });
@@ -90,7 +91,8 @@ function checkItem() {
         mark.parentElement.className = "check";
       } 
       console.log(index)
-        console.log(allProjects[currentProject][index].done)
+        console.log(allProjects[currentProject][index].done);
+        updateTasksScore();
         updateLocalStorage();
       });
   });
@@ -139,6 +141,7 @@ function switchProjects() {
     resetInput();
     resetPriority();
     deleteTask();
+    updateTasksScore();
     updateLocalStorage();
     console.log(allProjects)
   });
@@ -196,6 +199,7 @@ todoList();
 addProject();
 setTimeout(() => {
   displayOldTasks();
+  updateTasksScore();
 }, 500); 
 checkItem();
 function showOldProjects() {

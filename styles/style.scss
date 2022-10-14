@@ -106,6 +106,8 @@ body {
     width: 70vw;
     background-color: rgb(177, 184, 248);
     border-radius: 15px;
+    padding-bottom: 3em;
+    position: relative;
     form {
         font-size: 1.1rem;
         margin-bottom: 50px;
@@ -208,6 +210,16 @@ body {
         .delete-task {
             display: inline-block;
         }       
+    }
+    #tasks-score {
+        position: absolute;
+        bottom: 0;
+        padding: 10px;
+        background-color: #f5e3e3e0;
+        width: 100%;
+        border-bottom-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        font-size: 17px;
     }
 }
 .check {

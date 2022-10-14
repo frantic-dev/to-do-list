@@ -1,4 +1,7 @@
 import "../styles/style.scss";
+export let tasksTotal = 0;
+export let completedTasksScore = 0;
+export let uncompletedTasksScore = 0;
 const body = document.querySelector("body");
 function htmlBody() {
   body.innerHTML = `
@@ -20,8 +23,8 @@ function htmlBody() {
             <div id="priority-btn">Low</div>
             <button id="add-todo">&#10004;</button>
         </form>
-        <div id="display" class="default-project">
-        </div>
+        <div id="display" class="default-project"></div>
+        <div id="tasks-score">Total: ${tasksTotal} Completed: ${completedTasksScore} Rest: ${uncompletedTasksScore} </div>
     </div>
 
     `;
