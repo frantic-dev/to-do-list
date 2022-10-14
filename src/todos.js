@@ -26,7 +26,6 @@ export function deleteTask() {
     });
   });
 }
-deleteTask();
 function deleteFromAll(deletedProp) {
   let index = allProjects["all"].findIndex(
     (prop) => prop.title === deletedProp.title

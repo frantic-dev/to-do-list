@@ -200,6 +200,7 @@ addProject();
 setTimeout(() => {
   displayOldTasks();
   updateTasksScore();
+  deleteTask();
 }, 500); 
 checkItem();
 function showOldProjects() {
