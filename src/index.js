@@ -1,5 +1,4 @@
 import "../styles/style.scss";
-
 const body = document.querySelector("body");
 function htmlBody() {
   body.innerHTML = `
@@ -10,7 +9,7 @@ function htmlBody() {
         <div>Projects
             <div>
                 <span id="add-project">+</span>
-                <span id="edit-projects"><img src="https://img.icons8.com/ios/50/000000/edit--v1.png"/></span>
+                <span><img id="edit-projects" src="https://img.icons8.com/ios/50/000000/edit--v1.png"/></span>
             </div>
         </div>
     </div>
@@ -21,7 +20,8 @@ function htmlBody() {
             <div id="priority-btn">Low</div>
             <button id="add-todo">&#10004;</button>
         </form>
-        <div id="display" class="default-project"></div>
+        <div id="display" class="default-project">
+        </div>
     </div>
 
     `;

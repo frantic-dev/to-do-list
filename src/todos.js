@@ -1,6 +1,6 @@
 import { allProjects, currentProject } from "./todo-list";
 import { updateLocalStorage } from "./storage";
-import trashIcon from '../images/icons8-trash-32.png';
+import trashIcon from "../images/icons8-trash-32.png";
 export function addDeleteBtn() {
   return `    <div class="delete-task">
     <img class="trash-icon" src="${trashIcon}" alt="image of a trash can"/>
@@ -16,9 +16,9 @@ export function deleteTask() {
       btnsArray = [...allDeleteBtns];
       btn.parentElement.parentElement.parentElement.remove();
       let index = btnsArray.indexOf(btn);
-      console.log(index)
-      console.log(allProjects[currentProject][index])
-      deleteFromAll(allProjects[currentProject][index])
+      console.log(index);
+      console.log(allProjects[currentProject][index]);
+      deleteFromAll(allProjects[currentProject][index]);
       allProjects[currentProject].splice(index, 1);
       // allProjects[currentProject][0] = display.innerHTML;
       updateLocalStorage();
@@ -27,8 +27,10 @@ export function deleteTask() {
   });
 }
 deleteTask();
-function deleteFromAll (deletedProp) {
-  let index = allProjects["all"].findIndex(prop => prop.title === deletedProp.title);
+function deleteFromAll(deletedProp) {
+  let index = allProjects["all"].findIndex(
+    (prop) => prop.title === deletedProp.title
+  );
   console.log(index);
   allProjects["all"].splice(index, 1);
 }
@@ -51,20 +53,30 @@ function deleteFromAll (deletedProp) {
 // }
 
 function displayDeleteProjectsBtns() {
-  let deleteProjectBtns = document.querySelectorAll('.project span');
-  deleteProjectBtns.forEach( btn => {
-     btn.style.display = "inline-block";
-     btn.addEventListener('click', (e)=> {
-       e.stopImmediatePropagation();
-       let index = [...deleteProjectBtns].indexOf(btn);
-       let targetProject = deleteProjectBtns[index].parentElement;
-       targetProject.remove();
-       delete allProjects[targetProject.id];
-       console.log(targetProject.id)
-       console.log(allProjects)
-       updateLocalStorage()
-    })
-  })
+  let deleteProjectBtns = document.querySelectorAll(".project span");
+  deleteProjectBtns.forEach((btn) => {
+    btn.style.display = "inline-block";
+    btn.addEventListener("click", (e) => {
+      e.stopImmediatePropagation();
+      let index = [...deleteProjectBtns].indexOf(btn);
+      let targetProject = deleteProjectBtns[index].parentElement;
+      targetProject.remove();
+      delete allProjects[targetProject.id];
+      console.log(targetProject.id);
+      console.log(allProjects);
+      updateLocalStorage();
+    });
+  });
 }
-let editProjectsBtn = document.querySelector('#edit-projects');
-editProjectsBtn.addEventListener('click', displayDeleteProjectsBtns)
+let editProjectsBtn = document.querySelector("#edit-projects");
+editProjectsBtn.addEventListener("click",displayDeleteProjectsBtns);
+
+window.addEventListener("click", (e) => {
+  if (e.target !== editProjectsBtn) {
+    console.log(e.target.id);
+    let deleteProjectBtns = document.querySelectorAll(".project span");
+    deleteProjectBtns.forEach((btn) => {
+      btn.style.display = "none";
+    });
+  }
+});
