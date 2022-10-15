@@ -1,7 +1,8 @@
 import "../styles/style.scss";
-export let tasksTotal = 0;
-export let completedTasksScore = 0;
-export let uncompletedTasksScore = 0;
+
+let tasksTotal = 0;
+let completedTasksScore = 0;
+let uncompletedTasksScore = 0;
 const body = document.querySelector("body");
 function htmlBody() {
   body.innerHTML = `

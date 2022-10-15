@@ -44,10 +44,12 @@ function deleteFromAll(deletedProp) {
 // }
 export function defaultDate() {
     let day = new Date().getDate();
-    let month = new Date().getMonth();
-    let year = new Date().getMonth() + 1;
-    return `${day}-${month}-${year}`;
+    let month = new Date().getMonth() + 1;
+    let year = new Date().getFullYear() ;
+    return `${year}-${month}-${day}`;
 }
+let dateInput = document.querySelector('#date-input');
+dateInput.setAttribute('min', `${defaultDate()}`)
 
 function displayDeleteProjectsBtns() {
   let deleteProjectBtns = document.querySelectorAll(".project span");
