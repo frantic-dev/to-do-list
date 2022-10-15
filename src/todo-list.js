@@ -1,5 +1,5 @@
 import { updateLocalStorage } from "./storage";
-import { addDeleteBtn, deleteTask, updateTasksScore } from "./todos";
+import { addDeleteBtn, deleteTask, updateTasksScore , defaultDate} from "./todos";
 
 let allStoredProjects = JSON.parse(localStorage.getItem("allProjects"));
 const input = document.querySelector("input");
@@ -26,8 +26,13 @@ function todoList() {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     e.stopImmediatePropagation();
-    storeTodoInProject(input.value, dateInput.value, priorityBtn.textContent);
-    if(currentProject !== 'all') addTaskInAll(input.value, dateInput.value, priorityBtn.textContent);
+    if(dateInput.value === "") {
+      storeTodoInProject(input.value, defaultDate(), priorityBtn.textContent);
+      if(currentProject !== 'all') addTaskInAll(input.value, defaultDate(), priorityBtn.textContent);
+    } else {
+      storeTodoInProject(input.value, dateInput.value, priorityBtn.textContent);
+      if(currentProject !== 'all') addTaskInAll(input.value, dateInput.value, priorityBtn.textContent); 
+    }
     resetPriority();
     displayNewTodo();
     resetInput();

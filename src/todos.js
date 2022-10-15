@@ -42,14 +42,12 @@ function deleteFromAll(deletedProp) {
 // function addTaskToAll() {
 
 // }
-// export function defaultDate(value) {
-//   if (value === "") {
-//     let day = new Date().getDate();
-//     let month = new Date().getMonth();
-//     let year = new Date().getMonth();
-//     return (value = `${day}-${month}-${year}`);
-//   }
-// }
+export function defaultDate() {
+    let day = new Date().getDate();
+    let month = new Date().getMonth();
+    let year = new Date().getMonth() + 1;
+    return `${day}-${month}-${year}`;
+}
 
 function displayDeleteProjectsBtns() {
   let deleteProjectBtns = document.querySelectorAll(".project span");
