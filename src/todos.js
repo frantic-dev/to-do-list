@@ -34,14 +34,6 @@ function deleteFromAll(deletedProp) {
   allProjects["all"].splice(index, 1);
 }
 
-// import { formatDistance, subDays } from 'date-fns'
-// import { Value } from "sass";
-
-// console.log(formatDistance(subDays(new Date(), 4), new Date(), { addSuffix: true }))
-
-// function addTaskToAll() {
-
-// }
 export function defaultDate() {
     let day = new Date().getDate();
     let month = new Date().getMonth() + 1;

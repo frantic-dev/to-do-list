@@ -67,7 +67,7 @@ function displayNewTodo() {
           <div class="date">
               ${newTask.date}
           </div>
-          <div class="priority">
+          <div class="priority ${newTask.priority}">
               ${newTask.priority}
           </div>
           <div>
@@ -170,7 +170,7 @@ function displayOldTasks() {
       <div class="date">
           ${task.date}
       </div>
-      <div class="priority">
+      <div class="priority ${task.priority}">
           ${task.priority}
       </div>
       <div>

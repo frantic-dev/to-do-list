@@ -165,6 +165,8 @@ body {
             border: 2px solid white;
             cursor: pointer;
             user-select: none;
+            text-align: center;
+            width: 68px;
             &:hover{
                 filter: brightness(110%);
                 outline: 1px solid rgb(196, 195, 195);
@@ -212,7 +214,24 @@ body {
         }
         .delete-task {
             display: inline-block;
-        }       
+        }
+        .priority{
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .Low{
+            background-color: rgba(68, 68, 68, 0.527);
+            color: white;
+        }
+        .Mid {
+            background-color: rgba(101, 98, 255, 0.527);
+            color: white;            
+        }
+        .High {
+            background-color: rgba(255, 96, 96, 0.527);
+            color: white;            
+            
+        }
     }
     #tasks-score {
         position: absolute;
