@@ -11,14 +11,15 @@ export function deleteTask() {
   let allDeleteBtns = document.querySelectorAll(".trash-icon");
   let btnsArray = [...allDeleteBtns];
   allDeleteBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", (e) => {
+      e.stopImmediatePropagation();
       allDeleteBtns = document.querySelectorAll(".trash-icon");
       btnsArray = [...allDeleteBtns];
-      btn.parentElement.parentElement.parentElement.remove();
       let index = btnsArray.indexOf(btn);
       console.log(index);
       console.log(allProjects[currentProject][index]);
-      deleteFromAll(allProjects[currentProject][index]);
+      if (currentProject !== "all") deleteFromAll(allProjects[currentProject][index]);
+      btn.parentElement.parentElement.parentElement.remove();
       allProjects[currentProject].splice(index, 1);
       updateTasksScore();
       updateLocalStorage();
@@ -31,7 +32,7 @@ function deleteFromAll(deletedProp) {
     (prop) => prop.title === deletedProp.title
   );
   console.log(index);
-  allProjects["all"].splice(index, 1);
+  if(index !== -1) allProjects["all"].splice(index, 1);
 }
 
 export function defaultDate() {
